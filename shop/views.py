@@ -21,7 +21,8 @@ def product_list(request, category_slug=None):
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
     if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
+        category = get_object_or_404(Category, slug=category_slug)#used to find the items and raise 404 in case the item does
+        #not exist
         products = products.filter(category=category)
     context = {'category': category, 'categories': categories, 'products': products}
     return render(request, 'shop/product/list.html', context)
